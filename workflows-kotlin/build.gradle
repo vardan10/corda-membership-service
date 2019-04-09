@@ -67,6 +67,12 @@ dependencies {
     cordapp project(":contracts-kotlin")
     cordapp "com.r3.businessnetworks:membership-service:2.0"
     cordapp "com.r3.businessnetworks:membership-service-contracts-and-states:2.0"
+
+    // Corda updates distribution
+    cordapp "net.corda.businessnetworks:corda-updates-app:1.0"
+    cordapp "net.corda.businessnetworks:corda-updates-app-states:1.0"
+    cordapp "net.corda.businessnetworks:corda-updates-core:1.0"
+    cordapp "net.corda.businessnetworks:corda-updates-transport:1.0"
 }
 
 task integrationTest(type: Test, dependsOn: []) {
@@ -88,6 +94,12 @@ task deployNodes(type: Cordform, dependsOn: ['jar']) {
         cordapp project(":contracts-kotlin")
         cordapp "com.r3.businessnetworks:membership-service-contracts-and-states:2.0"
         cordapp "com.r3.businessnetworks:membership-service:2.0"
+
+        // Corda updates distribution
+        cordapp "net.corda.businessnetworks:corda-updates-app:1.0"
+        cordapp "net.corda.businessnetworks:corda-updates-app-states:1.0"
+        cordapp "net.corda.businessnetworks:corda-updates-core:1.0"
+        cordapp "net.corda.businessnetworks:corda-updates-transport:1.0"
     }
     node {
         name "O=Notary,L=London,C=GB"
@@ -130,3 +142,35 @@ task deployNodes(type: Cordform, dependsOn: ['jar']) {
         rpcUsers = [[user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
 }
+
+
+
+//task deployAndConfigureNodes {
+//    doLast{
+//         //update-config
+//        copy {
+//            from "../updates-config/bno/config/**"
+//            into "build/nodes/BNO/cordapps"
+//        }
+//        copy {
+//            from("updates-config") {
+//                include "config/**"
+//            }
+//            into "build/nodes/PartyA/cordapps"
+//        }
+//        copy {
+//            from("membership-config/bno") {
+//                include "config/**"
+//            }
+//            into "build/nodes/BNO/cordapps"
+//        }
+//        copy {
+//            from("membership-config/member") {
+//                include "config/**"
+//            }
+//            into "build/nodes/PartyA/cordapps"
+//        }
+//    }
+//}
+
+//deployAndConfigureNodes.dependsOn deployNodes

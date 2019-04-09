@@ -76,3 +76,10 @@ curl -X POST \
   -H 'content-type: application/x-www-form-urlencoded' \
   -d 'iouValue=99&partyName=O%3DPartyB%2CL%3DNew%20York%2CC%3DUS'
 ```
+
+
+
+Corda distribution service
+```
+start ScheduleSyncFlow syncerConfig: null, launchAsync: true
+```
